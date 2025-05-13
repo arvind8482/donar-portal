@@ -1,0 +1,18 @@
+@import "tailwindcss";
+ .login-screen{
+  background: #DA4F46; width: 100%;
+background: linear-gradient(0deg, rgba(218, 79, 70, 1) 51%, rgba(240, 171, 80, 1) 100%); height: 100vh; display: flex; align-items: center; justify-content: center;
+ }
+  .card-head{
+  background:rgba(240, 171, 80, 1); width: 100%;  
+ }
+ .btn{
+  background: rgba(240, 171, 80, 1); width: 100%; 
+ }
+
+
+ .btn:hover{
+  background: rgba(218, 79, 70, 1); width: 100%;  cursor: pointer;
+ }
+
+ 
