@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <SidebarInset>
         <SiteHeader />
         <main className="w-full"> 
-        {children}
+        {children} 
       </main>
       </SidebarInset>
     </SidebarProvider>
