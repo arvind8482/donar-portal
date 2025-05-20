@@ -17,7 +17,7 @@
 "Payment Method Title":String,
 "Order Total Amount":String,
 "Settlement amount":String,
-"settlement date":String,
+"settlement date":String
  })
 
  export const Payment = mongoose.models.payments || mongoose.model("payments" , paymentModel)

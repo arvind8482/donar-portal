@@ -59,24 +59,24 @@ export default function PaymentsPage() {
         <TableBody>
           {users.map((user, idx) => (
             <TableRow key={idx}>
-              <TableCell >{user['Donation Number']}</TableCell>
-              <TableCell>{user['Donation Status']}</TableCell>
-              <TableCell>{user['Donation Date']}</TableCell>
-              <TableCell >{user['Donor Name']}</TableCell>
-              <TableCell >{user['Birthday']}</TableCell>
-              <TableCell>{user['PAN']}</TableCell>
-              <TableCell>{user['Complete Address']}</TableCell>
-              <TableCell >{user['State Name']}</TableCell>
-              <TableCell >{user['City']}</TableCell>
-              <TableCell>{user['Postcode']}</TableCell>
-              <TableCell>{user['Email']}</TableCell>
-              <TableCell >{user['Mobile Number']}</TableCell>
-              <TableCell >{user['Item Name']}</TableCell>
-              <TableCell>{user['Transaction ID']}</TableCell>
-              <TableCell>{user['Payment Method Title']}</TableCell>
-              <TableCell >{user['Order Total Amount']}</TableCell>
-              <TableCell >{user['Settlement amount']}</TableCell>
-              <TableCell>{user['settlement date']}</TableCell>
+                <TableCell >{user['Donation Number']}</TableCell>
+                <TableCell>{user['Donation Status']}</TableCell>
+                <TableCell>{user['Donation Date']}</TableCell>
+                <TableCell >{user['Donor Name']}</TableCell>
+                <TableCell >{user['Birthday']}</TableCell>
+                <TableCell>{user['PAN']}</TableCell>
+                <TableCell>{user['Complete Address']}</TableCell>
+                <TableCell >{user['State Name']}</TableCell>
+                <TableCell >{user['City']}</TableCell>
+                <TableCell>{user['Postcode']}</TableCell>
+                <TableCell>{user['Email']}</TableCell>
+                <TableCell >{user['Mobile Number']}</TableCell>
+                <TableCell >{user['Item Name']}</TableCell>
+                <TableCell>{user['Transaction ID']}</TableCell>
+                <TableCell>{user['Payment Method Title']}</TableCell>
+                <TableCell >{user['Order Total Amount']?.toString()}</TableCell>
+                <TableCell >{user['Settlement amount']?.toString()}</TableCell>
+                <TableCell>{user['settlement date']}</TableCell>
             </TableRow>
 
           ))}
