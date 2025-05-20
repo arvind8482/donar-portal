@@ -4,7 +4,22 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
     const client = await clientPromise;
-    const db = client.db(); // dbName is already in URI, so default is fine
+    const db = client.db();  
+
+    const payment = await db.collection('payment').find({}).toArray();
+
+    return NextResponse.json(payment);  
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: 'Failed to fetch payment' }, { status: 500 });
+  }
+}
+
+
+export async function post() {
+  try {
+    const client = await clientPromise;
+    const db = client.db();  
 
     const payment = await db.collection('payment').find({}).toArray();
 
