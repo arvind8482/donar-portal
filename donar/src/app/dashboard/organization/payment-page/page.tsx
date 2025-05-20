@@ -7,11 +7,26 @@ import { useEffect, useState } from 'react'
 export default function Page() {
     const [payments, setPayments] = useState([]) 
 
-  useEffect(() => {
-    fetch('/api/payments') // or use static mock data
-      .then((res) => res.json())
-      .then((data) => setPayments(data))
-  }, [])
+useEffect(() => {
+  fetch('/api/payments')
+    .then((res) => res.json())
+    .then((data) => {
+      const formatted = data.map((item: any) => ({
+        donationNumber: item["Donation Number"],
+        donationStatus: item["Donation Status"],
+        donationDate: item["Donation Date"],
+        donorName: item["Donor Name"],
+        city: item["City"],
+        email: item["Email"],
+        mobileNumber: item["Mobile Number"],
+        itemName: item["Item Name"],
+        transactionId: item["Transaction ID"],
+        orderTotalAmount: item["Order Total Amount"],
+      }))
+      setPayments(formatted)
+    })
+}, [])
+
 
   return   (
     <DataTable  columns={columns} data={payments} />
