@@ -1,8 +1,8 @@
 // /src/lib/mongodb.js
 import { MongoClient } from 'mongodb';
 
-const username = encodeURIComponent(process.env.MONGODB_USERNAME);
-const password = encodeURIComponent(process.env.MONGODB_PASSWORD); 
+// const username = encodeURIComponent(process.env.MONGODB_USERNAME);
+// const password = encodeURIComponent(process.env.MONGODB_PASSWORD); 
 
 const MONGODB_URI_PAYMENTS = `mongodb+srv://arvind_kumar:0r8Yx9aInHCKh566@cluster0.7beqiva.mongodb.net/payments?retryWrites=true&w=majority&appName=Cluster0`;
 
