@@ -39,7 +39,7 @@ useEffect(() => {
       setPayments(formatted)
     })
 }, [])
-
+console.log(payments);
 
   return   (
     <DataTable  columns={columns} data={payments} />
