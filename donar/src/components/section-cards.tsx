@@ -11,8 +11,8 @@ import {
 
 export function SectionCards() {
   return (
-    <div className="*:data-[slot=card]:shadow-xs flex space-x-4 lg:px-6">
-      <Card className="@container/card w-1/4  bg-[#DA4F46] text-white">
+    <div className="*:data-[slot=card]:shadow-xs flex flex-col xl:flex-row space-x-4 lg:px-6">
+      <Card className="@container/card w-full xl:w-1/4 mb-2  bg-[#DA4F46] text-white">
         <CardHeader className="relative">
           <CardDescription className="text-white">Total Revenue</CardDescription>
           <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
@@ -34,7 +34,7 @@ export function SectionCards() {
           </div>
         </CardFooter>
       </Card>
-      <Card className="@container/card w-1/4 bg-[#DA4F46] text-white" >
+      <Card className="@container/card w-full xl:w-1/4 mb-2 bg-[#DA4F46] text-white" >
         <CardHeader className="relative">
           <CardDescription className="text-white">New Customers</CardDescription>
           <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
@@ -56,7 +56,7 @@ export function SectionCards() {
           </div>
         </CardFooter>
       </Card>
-      <Card className="@container/card w-1/4 bg-[#DA4F46] text-white">
+      <Card className="@container/card w-full xl:w-1/4 mb-2 bg-[#DA4F46] text-white">
         <CardHeader className="relative">
           <CardDescription className="text-white">Active Accounts</CardDescription>
           <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
@@ -76,7 +76,7 @@ export function SectionCards() {
           <div className="text-white">Engagement exceed targets</div>
         </CardFooter>
       </Card>
-      <Card className="@container/card w-1/4 bg-[#DA4F46] text-white">
+      <Card className="@container/card w-full xl:w-1/4 mb-2 bg-[#DA4F46] text-white">
         <CardHeader className="relative">
           <CardDescription  className="text-white">Growth Rate</CardDescription>
           <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
