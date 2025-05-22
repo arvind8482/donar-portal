@@ -1,4 +1,6 @@
  import mongoose from "mongoose"
+
+
  const paymentModel =new mongoose.Schema({ 
 "Donation Number":String,
 "Donation Status" :String,
@@ -18,6 +20,11 @@
 "Order Total Amount":String,
 "Settlement amount":String,
 "settlement date":String
- })
+ },
+ {
+    // ✅ Replace with the actual collection name in MongoDB
+    collection: 'payment', 
+  }
+)
 
- export const Payment = mongoose.models.payments || mongoose.model("payments" , paymentModel)
+export const Payment = mongoose.models.Payment || mongoose.model("Payment", paymentModel);
