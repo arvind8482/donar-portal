@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import {
+  AppWindowIcon,
   ArrowUpCircleIcon,
   BarChartIcon,
   CameraIcon,
@@ -11,11 +12,14 @@ import {
   FileIcon,
   FileTextIcon,
   FolderIcon,
+  GiftIcon,
+  HandCoinsIcon,
   HelpCircleIcon,
   LayoutDashboardIcon,
   ListIcon,
   SearchIcon,
   SettingsIcon,
+  ShoppingBagIcon,
   UsersIcon,
 } from "lucide-react"
 
@@ -42,112 +46,41 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/dashboard/organization",
       icon: LayoutDashboardIcon,
     },
     {
-      title: "Lifecycle",
-      url: "#",
-      icon: ListIcon,
+      title: "Donors",
+      url: "/dashboard/organization/donors",
+      icon: HandCoinsIcon,
     },
     {
-      title: "Analytics",
-      url: "#",
-      icon: BarChartIcon,
+      title: "Gifts",
+      url: "/dashboard/organization/gifts",
+      icon: GiftIcon,
     },
     {
-      title: "Projects",
-      url: "#",
-      icon: FolderIcon,
+      title: "Compaign",
+      url: "/dashboard/organization/compaign",
+      icon: AppWindowIcon,
     },
     {
-      title: "Team",
-      url: "#",
+      title: "Product",
+      url: "/dashboard/organization/product",
+      icon: ShoppingBagIcon,
+    },
+     {
+      title: "Users",
+      url: "/dashboard/organization/users",
       icon: UsersIcon,
     },
-  ],
-  navClouds: [
-    {
-      title: "Capture",
-      icon: CameraIcon,
-      isActive: true,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Proposal",
-      icon: FileTextIcon,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Prompts",
-      icon: FileCodeIcon,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
+      {
       title: "Settings",
-      url: "#",
+      url: "/dashboard/organization/settings",
       icon: SettingsIcon,
     },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: HelpCircleIcon,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: SearchIcon,
-    },
   ],
-  documents: [
-    {
-      name: "Data Library",
-      url: "#",
-      icon: DatabaseIcon,
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: ClipboardListIcon,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: FileIcon,
-    },
-  ],
+ 
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -169,9 +102,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        <NavMain items={data.navMain} /> 
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

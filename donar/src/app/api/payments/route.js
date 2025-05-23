@@ -1,5 +1,5 @@
  
-import {paymentStr} from '@/lib/mongodb'
+import {DBUrl} from '@/lib/mongodb'
 import {Payment} from '@/lib/models/payment'
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
@@ -7,8 +7,9 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    await mongoose.connect(paymentStr);
+    await mongoose.connect(`${DBUrl}`);
     const data = await Payment.find(); 
+    console.log(data)
     return NextResponse.json({
       result: data
     });
