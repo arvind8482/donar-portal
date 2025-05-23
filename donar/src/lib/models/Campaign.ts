@@ -9,6 +9,11 @@ const CampaignSchema = new mongoose.Schema({
   startDate: Date,
   endDate: Date,
   organizationId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-});
+},
+ {
+    // ✅ Replace with the actual collection name in MongoDB
+    collection: 'campaigns', 
+  }
+);
 
 export default mongoose.models.Campaign || mongoose.model('Campaign', CampaignSchema);

@@ -1,30 +1,27 @@
- import mongoose from "mongoose"
+import mongoose from "mongoose";
 
+const paymentSchema = new mongoose.Schema({
+  donationNumber: String,
+  donationStatus: String,
+  donationDate: Date,
+  donorName: String,
+  birthday: Date,
+  pan: String,
+  completeAddress: String,
+  stateName: String,
+  city: String,
+  postcode: String,
+  email: String,
+  mobileNumber: String,
+  itemName: String,
+  transactionId: String,
+  paymentMethodTitle: String,
+  orderTotalAmount: Number,
+  settlementAmount: Number,
+  settlementDate: Date,
+}, {
+  collection: 'payments',
+  timestamps: true // Optional: adds createdAt & updatedAt
+});
 
- const paymentModel = new mongoose.Schema({ 
-"Donation Number":String,
-"Donation Status" :String,
-"Donation Date" :String,
-"Donor Name" :String,
-"Birthday" :String,
-"PAN" :String,
-"Complete Address":String,
-"State Name":String,
-"City" :String,
-"Postcode":String,
-"Email":String,
-"Mobile Number":String,
-"Item Name":String,
-"Transaction ID":String,
-"Payment Method Title":String,
-"Order Total Amount":String,
-"Settlement amount":String,
-"settlement date":String
- },
- {
-    // ✅ Replace with the actual collection name in MongoDB
-    collection: 'payments', 
-  }
-)
-
-export const Payment = mongoose.models.Payment || mongoose.model("Payment", paymentModel);
+export const Payment = mongoose.models.Payment || mongoose.model("Payment", paymentSchema);

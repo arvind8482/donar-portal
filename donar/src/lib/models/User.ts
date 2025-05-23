@@ -25,7 +25,11 @@ const UserSchema = new mongoose.Schema({
     address: String
   },
   createdAt: { type: Date, default: Date.now },
-});
+},
+ {
+    // ✅ Replace with the actual collection name in MongoDB
+    collection: 'users', 
+  });
 
 
 export default mongoose.models.User || mongoose.model('User', UserSchema);
