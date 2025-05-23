@@ -12,7 +12,7 @@ const CampaignSchema = new mongoose.Schema({
 },
  {
     // ✅ Replace with the actual collection name in MongoDB
-    collection: 'campaigns', 
+    collection: 'campaign', 
   }
 );
 

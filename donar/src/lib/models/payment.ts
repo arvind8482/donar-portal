@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const paymentSchema = new mongoose.Schema({
   donationNumber: String,
@@ -20,8 +20,8 @@ const paymentSchema = new mongoose.Schema({
   settlementAmount: Number,
   settlementDate: Date,
 }, {
-  collection: 'payments',
-  timestamps: true // Optional: adds createdAt & updatedAt
+  collection: 'payment',
+  timestamps: true
 });
 
 export const Payment = mongoose.models.Payment || mongoose.model("Payment", paymentSchema);
