@@ -1,19 +1,32 @@
- import mongoose from "mongoose";
+import mongoose, { Schema, Connection, Model, Document, Types } from 'mongoose';
 
-// models/Campaign.js
-const campaignSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-  goalAmount: Number,
-  collectedAmount: { type: Number, default: 0 },
-  startDate: Date,
-  endDate: Date,
-  organizationId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-},
- {
-    // ✅ Replace with the actual collection name in MongoDB
-    collection: 'campaign', 
+interface ICampaign extends Document {
+  title: string;
+  description: string;
+  goalAmount: number;
+  collectedAmount: number;
+  startDate: Date;
+  endDate: Date;
+  organizationId: Types.ObjectId;
+}
+
+const campaignSchema = new Schema<ICampaign>(
+  {
+    title: { type: String, required: true },
+    description: { type: String },
+    goalAmount: { type: Number },
+    collectedAmount: { type: Number, default: 0 },
+    startDate: { type: Date },
+    endDate: { type: Date },
+    organizationId: { type: Schema.Types.ObjectId, ref: 'User' }, // ✅ use Schema.Types.ObjectId for schema
+  },
+  {
+    collection: 'campaign',
+    timestamps: true,
   }
 );
 
-export default mongoose.models.Campaign || mongoose.model('Campaign', campaignSchema);
+// ✅ Register model properly
+export const getCampaignModel = (conn: Connection): Model<ICampaign> => {
+  return conn.models.Campaign || conn.model<ICampaign>('Campaign', campaignSchema);
+};
