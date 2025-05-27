@@ -1,17 +1,26 @@
-import { connectToDBPayments } from '@/lib/mongodb';
-import { Payment } from '@/lib/models/Payment';
-import { NextResponse } from 'next/server';
+// app/api/payments/route.ts
+import { connectToDBPayments } from '../../../lib/mongodb';
+import { getPaymentModel } from '../../../lib/models/Payment';
 
 export async function GET() {
-  try { 
-    await connectToDBPayments();
+  try {
+    const conn = await connectToDBPayments();
+    const Payment = getPaymentModel(conn);
+
     const payments = await Payment.find();
-    return NextResponse.json(payments);
+    return new Response(JSON.stringify(payments), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   } catch (error) {
-    console.error("GET /api/payments error:", error);
-    return NextResponse.json(
-      { error: 'Internal Server Error', details: error instanceof Error ? error.message : error },
-      { status: 500 }
-    );
+    console.error('Error fetching payments:', error);
+    return new Response(JSON.stringify({ error: 'Failed to fetch payments' }), {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 }

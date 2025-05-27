@@ -1,7 +1,7 @@
  import mongoose from "mongoose";
 
 // models/Campaign.js
-const CampaignSchema = new mongoose.Schema({
+const campaignSchema = new mongoose.Schema({
   title: String,
   description: String,
   goalAmount: Number,
@@ -16,4 +16,4 @@ const CampaignSchema = new mongoose.Schema({
   }
 );
 
-export default mongoose.models.Campaign || mongoose.model('Campaign', CampaignSchema);
+export default mongoose.models.Campaign || mongoose.model('Campaign', campaignSchema);

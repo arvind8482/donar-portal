@@ -1,7 +1,7 @@
 // app/api/campaigns/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import Campaign from '@/lib/models/Campaign';
-import { connectToDBCampaign } from '@/lib/mongodb';
+import Campaign from '../../../lib/models/Campaign';
+import { connectToDBCampaign } from '../../../lib/mongodb';
 
 export async function GET(req: NextRequest) {
   try {

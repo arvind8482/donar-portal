@@ -1,10 +1,9 @@
 // lib/mongodb.ts
 import mongoose from 'mongoose';
+ 
 
-const { MONGODB_USERNAME, MONGODB_PASSWORD } = process.env;
-
-const MONGODB_URI_PAYMENTS = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/payments?retryWrites=true&w=majority&appName=Cluster0`;
-const MONGODB_URI_CAMPAIGNS = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/campaigns?retryWrites=true&w=majority&appName=Cluster0`;
+const MONGODB_URI_PAYMENTS = `mongodb+srv://arvind_kumar:KDPCTO1UnDAEbMql@cluster0.7beqiva.mongodb.net/payments?retryWrites=true&w=majority&appName=Cluster0`;
+const MONGODB_URI_CAMPAIGNS = `mongodb+srv://arvind_kumar:KDPCTO1UnDAEbMql@cluster0.7beqiva.mongodb.net/campaigns?retryWrites=true&w=majority&appName=Cluster0`;
 
 export const connections: {
   payments?: mongoose.Connection;
