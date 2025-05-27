@@ -1,4 +1,4 @@
-import mongoose, { Schema, Connection, Model, Document, Types } from 'mongoose';
+import  { Schema, Connection, Model, Document, Types } from 'mongoose';
 
 interface ICampaign extends Document {
   title: string;
