@@ -7,6 +7,7 @@ let MONGODB_PASSWORD="KDPCTO1UnDAEbMql"
 const MONGODB_URI_PAYMENTS = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/payments?retryWrites=true&w=majority&appName=Cluster0`;
 const MONGODB_URI_CAMPAIGNS = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/campaigns?retryWrites=true&w=majority&appName=Cluster0`;
 const MONGODB_URI_DONORS = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/donors?retryWrites=true&w=majority&appName=Cluster0`;
+const MONGODB_URI_MARKETING = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/donors?retryWrites=true&w=majority&appName=Cluster0`;
 
 
 
@@ -14,6 +15,7 @@ export const connections: {
   payments?: mongoose.Connection;
   campaigns?: mongoose.Connection;
   donors?: mongoose.Connection;
+  marketings?: mongoose.Connection;
 } = {};
 
 export async function connectToDBPayments() {
@@ -39,5 +41,14 @@ export async function connectToDBDonar() {
   const conn = await mongoose.createConnection(MONGODB_URI_DONORS).asPromise();
   console.log("✅ Connected to donors DB");
   connections.donors = conn;
+  return conn;
+}
+
+
+export async function connectToDBMarketing() {
+  if (connections.marketings) return connections.marketings; 
+  const conn = await mongoose.createConnection(MONGODB_URI_MARKETING).asPromise();
+  console.log("✅ Connected to donors DB");
+  connections.marketings = conn;
   return conn;
 }
