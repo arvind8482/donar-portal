@@ -7,7 +7,7 @@ let MONGODB_PASSWORD="KDPCTO1UnDAEbMql"
 const MONGODB_URI_PAYMENTS = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/payments?retryWrites=true&w=majority&appName=Cluster0`;
 const MONGODB_URI_CAMPAIGNS = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/campaigns?retryWrites=true&w=majority&appName=Cluster0`;
 const MONGODB_URI_DONORS = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/donors?retryWrites=true&w=majority&appName=Cluster0`;
-const MONGODB_URI_MARKETING = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/donors?retryWrites=true&w=majority&appName=Cluster0`;
+const MONGODB_URI_MARKETING = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/marketings?retryWrites=true&w=majority&appName=Cluster0`;
 
 
 
