@@ -1,17 +1,16 @@
 // app/api/products/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import Product from '@/lib/models/Product';
-import { connectToDB } from '@/lib/mongodb';
+import { connectToDBProducts } from '../../../lib/mongodb';
+import { getProductModel } from '../../../lib/models/Product';
 
 export async function GET(req: NextRequest) {
-  await connectToDB();
-  const Products = await Product.find();
-  return NextResponse.json(Products);
-}
-
-export async function POST(req: NextRequest) {
-  await connectToDB();
-  const body = await req.json();
-  const newProduct = await Product.create(body);
-  return NextResponse.json(newProduct);
+  try {
+    const conn = await connectToDBProducts();
+    const Product = getProductModel(conn);
+    const products = await Product.find();
+    return NextResponse.json(products, { status: 200 });
+  } catch (error) {
+    console.error('❌ Error fetching products:', error);
+    return NextResponse.json({ message: 'Failed to fetch products' }, { status: 500 });
+  }
 }

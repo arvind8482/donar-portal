@@ -8,7 +8,10 @@ const MONGODB_URI_PAYMENTS = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWO
 const MONGODB_URI_CAMPAIGNS = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/campaigns?retryWrites=true&w=majority&appName=Cluster0`;
 const MONGODB_URI_DONORS = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/donors?retryWrites=true&w=majority&appName=Cluster0`;
 const MONGODB_URI_MARKETING = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/marketings?retryWrites=true&w=majority&appName=Cluster0`;
+const MONGODB_URI_PRODUCTS = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/products?retryWrites=true&w=majority&appName=Cluster0`;
+const MONGODB_URI_SETTINGS = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/settings?retryWrites=true&w=majority&appName=Cluster0`;
 
+const MONGODB_URI_USERS = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.7beqiva.mongodb.net/users?retryWrites=true&w=majority&appName=Cluster0`;
 
 
 export const connections: {
@@ -16,6 +19,9 @@ export const connections: {
   campaigns?: mongoose.Connection;
   donors?: mongoose.Connection;
   marketings?: mongoose.Connection;
+    products?: mongoose.Connection;
+     settings?: mongoose.Connection;
+      users?: mongoose.Connection;
 } = {};
 
 export async function connectToDBPayments() {
@@ -50,5 +56,30 @@ export async function connectToDBMarketing() {
   const conn = await mongoose.createConnection(MONGODB_URI_MARKETING).asPromise();
   console.log("✅ Connected to donors DB");
   connections.marketings = conn;
+  return conn;
+}
+
+export async function connectToDBProducts() {
+  if (connections.products) return connections.products; 
+  const conn = await mongoose.createConnection(MONGODB_URI_PRODUCTS).asPromise();
+  console.log("✅ Connected to products DB");
+  connections.products = conn;
+  return conn;
+}
+
+export async function connectToDBSettings() {
+  if (connections.settings) return connections.settings; 
+  const conn = await mongoose.createConnection(MONGODB_URI_SETTINGS).asPromise();
+  console.log("✅ Connected to settings DB");
+  connections.settings = conn;
+  return conn;
+}
+
+
+export async function connectToDBUsers() {
+  if (connections.users) return connections.users; 
+  const conn = await mongoose.createConnection(MONGODB_URI_USERS).asPromise();
+  console.log("✅ Connected to users DB");
+  connections.users = conn;
   return conn;
 }

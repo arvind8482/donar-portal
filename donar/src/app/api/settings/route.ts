@@ -1,17 +1,16 @@
-// app/api/settings/route.ts
+// app/api/products/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import Setting from '@/lib/models/Setting';
-import { connectToDB } from '@/lib/mongodb';
+import { connectToDBSettings } from '../../../lib/mongodb';
+import { getSettingModel } from '../../../lib/models/Setting';
 
 export async function GET(req: NextRequest) {
-  await connectToDB();
-  const Settings = await Setting.find();
-  return NextResponse.json(Settings);
-}
-
-export async function POST(req: NextRequest) {
-  await connectToDB();
-  const body = await req.json();
-  const newSetting = await Setting.create(body);
-  return NextResponse.json(newSetting);
+  try {
+    const conn = await connectToDBSettings();
+    const Setting = getSettingModel(conn);
+    const settings = await Setting.find();
+    return NextResponse.json(settings, { status: 200 });
+  } catch (error) {
+    console.error('❌ Error fetching settings:', error);
+    return NextResponse.json({ message: 'Failed to fetch settings' }, { status: 500 });
+  }
 }

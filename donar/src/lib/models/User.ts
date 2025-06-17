@@ -1,9 +1,29 @@
+import { Schema, Connection, Model, Document } from 'mongoose';
 
- import mongoose from "mongoose"
+export type UserRole = 'superadmin' | 'organization' | 'donor';
 
+export interface IUser extends Document {
+  name: string;
+  email: string;
+  password: string;
+  role: UserRole;
+  organizationDetails?: {
+    orgName?: string;
+    contactPerson?: string;
+    website?: string;
+    phone?: string;
+    address?: string;
+  };
+  donorDetails?: {
+    donationPreference?: string[];
+    phone?: string;
+    address?: string;
+  };
+  createdAt: Date;
+}
 
- // models/User.js
-const UserSchema = new mongoose.Schema({
+// Schema Definition
+const UserSchema = new Schema<IUser>({
   name: { type: String, required: true, trim: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
@@ -13,23 +33,24 @@ const UserSchema = new mongoose.Schema({
     required: true
   },
   organizationDetails: {
-    orgName: String,
-    contactPerson: String,
-    website: String,
-    phone: String,
-    address: String
+    orgName: { type: String },
+    contactPerson: { type: String },
+    website: { type: String },
+    phone: { type: String },
+    address: { type: String }
   },
   donorDetails: {
-    donationPreference: [String],
-    phone: String,
-    address: String
+    donationPreference: [{ type: String }],
+    phone: { type: String },
+    address: { type: String }
   },
-  createdAt: { type: Date, default: Date.now },
-},
- {
-    // ✅ Replace with the actual collection name in MongoDB
-    collection: 'users', 
-  });
+  createdAt: { type: Date, default: Date.now }
+}, {
+  collection: 'users',
+  timestamps: false  // You already set createdAt manually
+});
 
-
-export default mongoose.models.User || mongoose.model('User', UserSchema);
+// Model Getter
+export const getUserModel = (conn: Connection): Model<IUser> => {
+  return conn.models.User || conn.model<IUser>('User', UserSchema);
+};
