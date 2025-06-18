@@ -7,6 +7,7 @@ export interface IUser extends Document {
   email: string;
   password: string;
   role: UserRole;
+  isVerified: boolean;
   organizationDetails?: {
     orgName?: string;
     contactPerson?: string;
@@ -22,35 +23,41 @@ export interface IUser extends Document {
   createdAt: Date;
 }
 
-// Schema Definition
-const UserSchema = new Schema<IUser>({
-  name: { type: String, required: true, trim: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  role: {
-    type: String,
-    enum: ['superadmin', 'organization', 'donor'],
-    required: true
+const UserSchema = new Schema<IUser>(
+  {
+    name: { type: String, required: true, trim: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    role: {
+      type: String,
+      enum: ['superadmin', 'organization', 'donor'],
+      required: true,
+    },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    organizationDetails: {
+      orgName: { type: String },
+      contactPerson: { type: String },
+      website: { type: String },
+      phone: { type: String },
+      address: { type: String },
+    },
+    donorDetails: {
+      donationPreference: [{ type: String }],
+      phone: { type: String },
+      address: { type: String },
+    },
+    createdAt: { type: Date, default: Date.now },
   },
-  organizationDetails: {
-    orgName: { type: String },
-    contactPerson: { type: String },
-    website: { type: String },
-    phone: { type: String },
-    address: { type: String }
-  },
-  donorDetails: {
-    donationPreference: [{ type: String }],
-    phone: { type: String },
-    address: { type: String }
-  },
-  createdAt: { type: Date, default: Date.now }
-}, {
-  collection: 'users',
-  timestamps: false  // You already set createdAt manually
-});
+  {
+    collection: 'user',
+    timestamps: false, // keeping this as you're setting createdAt manually
+  }
+);
 
-// Model Getter
+// Export model getter
 export const getUserModel = (conn: Connection): Model<IUser> => {
   return conn.models.User || conn.model<IUser>('User', UserSchema);
 };

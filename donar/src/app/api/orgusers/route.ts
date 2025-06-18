@@ -1,17 +1,19 @@
 // app/api/orgusers/route.ts
-import { NextRequest, NextResponse } from 'next/server';
-import OrgUser from '@/lib/models/Marketing';
-import { connectToDB } from '@/lib/mongodb';
+import { getOrgUserModel } from '../../../lib/models/OrgUser';
+import { connectToDBOrgUsers } from '../../../lib/mongodb';
 
-export async function GET(req: NextRequest) {
-  await connectToDB();
-  const OrgUsers = await OrgUser.find();
-  return NextResponse.json(OrgUsers);
-}
+export async function GET() {
+  try {
+    const conn = await connectToDBOrgUsers();
+    console.log("OrgUser DB Connection Established");
 
-export async function POST(req: NextRequest) {
-  await connectToDB();
-  const body = await req.json();
-  const newOrgUser = await OrgUser.create(body);
-  return NextResponse.json(newOrgUser);
+    const OrgUser = getOrgUserModel(conn);
+
+    const orgUsers = await OrgUser.find().populate('organizationId');
+
+    return new Response(JSON.stringify(orgUsers), { status: 200 });
+  } catch (error: any) {
+    console.error("GET orgUsers error:", error.message);
+    return new Response("Failed to fetch orgUsers: " + error.message, { status: 500 });
+  }
 }

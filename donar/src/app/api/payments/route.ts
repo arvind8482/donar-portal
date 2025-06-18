@@ -1,7 +1,7 @@
 // app/api/payments/route.ts
 
 import { connectToDBPayments } from '../../../lib/mongodb';
-import { getPaymentModel } from '../../../lib/models/Payment';
+import { getPaymentModel } from '../../../lib/models/payment';
 
 export async function GET() {
   try {

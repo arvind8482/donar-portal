@@ -1,17 +1,29 @@
- import mongoose from "mongoose"
+// models/Gift.ts
+import { Schema, Connection, Model, Document, Types } from 'mongoose';
 
-// models/Gift.js
-const GiftSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-  value: Number,
-  donorId: { type: mongoose.Schema.Types.ObjectId, ref: 'Donor' },
-  organizationId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
-},
- {
-    // ✅ Replace with the actual collection name in MongoDB
-    collection: 'gifts', 
-  });
+export interface IGift extends Document {
+  title: string;
+  description: string;
+  value: number;
+  donorId: Types.ObjectId;
+  organizationId: Types.ObjectId;
+}
 
+const GiftSchema = new Schema<IGift>(
+  {
+    title: { type: String, required: true },
+    description: { type: String },
+    value: { type: Number, required: true },
+    donorId: { type: Schema.Types.ObjectId, ref: 'Donor', required: true },
+    organizationId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  },
+  {
+    collection: 'gifts', // ✅ Use your actual MongoDB collection name
+    timestamps: true,
+  }
+);
 
-export default mongoose.models.Gift || mongoose.model('Gift', GiftSchema);
+// ✅ Register model with provided connection
+export const getGiftModel = (conn: Connection): Model<IGift> => {
+  return conn.models.Gift || conn.model<IGift>('Gift', GiftSchema);
+};
