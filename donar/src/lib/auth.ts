@@ -3,13 +3,17 @@ import bcrypt from 'bcryptjs';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
+// ========================
 // Generate JWT Token
+// ========================
 export function generateToken(payload: object): string {
   return jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' });
 }
 
+// ========================
 // Verify JWT Token
-export function verifyToken(token: string) {
+// ========================
+export function verifyToken(token: string): any | null {
   try {
     return jwt.verify(token, JWT_SECRET);
   } catch (err) {
@@ -17,13 +21,36 @@ export function verifyToken(token: string) {
   }
 }
 
-// Hash user password
+// ========================
+// Hash Password
+// ========================
 export async function hashPassword(password: string): Promise<string> {
   const salt = await bcrypt.genSalt(10);
   return bcrypt.hash(password, salt);
 }
 
-// Compare input password with hashed password
-export async function verifyPassword(inputPassword: string, hashedPassword: string): Promise<boolean> {
-  return bcrypt.compare(inputPassword, hashedPassword);
+// ========================
+// Verify Password
+// ========================
+export async function verifyPassword(
+  enteredPassword: string,
+  hashedPassword: string
+): Promise<boolean> {
+  return bcrypt.compare(enteredPassword, hashedPassword);
+}
+
+// ========================
+// Decode Token on Client
+// ========================
+export function getUserFromToken(): any | null {
+  if (typeof window === 'undefined') return null;
+
+  const token = localStorage.getItem('token');
+  if (!token) return null;
+
+  try {
+    return jwt.decode(token); // No verification, just decoding
+  } catch {
+    return null;
+  }
 }

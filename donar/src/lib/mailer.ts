@@ -1,26 +1,12 @@
+// lib/mailer.ts
 import nodemailer from 'nodemailer';
 
-export async function sendVerificationEmail(to: string, token: string) {
-  const transporter = nodemailer.createTransport({
-    service: 'Gmail', // Or another SMTP service
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
-  const verificationUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/verify-email?token=${token}`;
-
-  const mailOptions = {
-    from: `"ISKCON Support" <${process.env.EMAIL_USER}>`,
-    to,
-    subject: 'Email Verification - ISKCON Donor Portal',
-    html: `
-      <p>Thank you for registering.</p>
-      <p>Please <a href="${verificationUrl}">click here to verify</a> your email address.</p>
-      <p>If you did not request this, you can ignore this email.</p>
-    `,
-  };
-
-  await transporter.sendMail(mailOptions);
-}
+export const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  port: Number(process.env.SMTP_PORT) || 587,
+  secure: false, // true for 465, false for 587
+  auth: {
+    user: process.env.SMTP_USER, // your email
+    pass: process.env.SMTP_PASS, // your password or app-specific password
+  },
+});
