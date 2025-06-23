@@ -50,9 +50,10 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-gray-950">
       <Toaster position="top-right" />
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+      <div className="box-outer-container">
+ <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl font-semibold mb-6 text-center">Login</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -91,6 +92,8 @@ export default function LoginPage() {
           Don’t have an account? <a href="/register" className="text-blue-600 underline">Register</a>
         </p>
       </div>
+      </div>
+     
     </div>
   );
 }
