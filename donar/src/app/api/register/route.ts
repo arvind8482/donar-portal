@@ -7,6 +7,7 @@ import {
 } from '../../../lib/auth';
 import { sendVerificationEmail } from '../../../lib/mailer';
 
+
 export async function POST(req: Request) {
   try {
     const { name, email, password } = await req.json();

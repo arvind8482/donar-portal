@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { getUserFromToken } from '../../../lib/jwt';
+import { getUserFromToken } from '../../../lib/auth';
 
 export default function DonorDashboard() {
   const router = useRouter();
