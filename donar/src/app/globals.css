@@ -4,3 +4,18 @@
 .box-outer-container{ 
 background: linear-gradient(180deg, rgba(232, 232, 232, 0.40) 0%, #FFB486 100%);padding: 15px; border-radius: 10px;
 }
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+ 
+.slide-down {
+  animation: slideDown 0.5s ease-out forwards;
+}
