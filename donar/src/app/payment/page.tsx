@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { loadRazorpayScript } from '../../lib/razorpay';
 import { FaUser, FaPhoneAlt, FaMapMarkerAlt, FaGoogle, FaFacebook, FaEnvelope } from 'react-icons/fa'; 
 
-function PaymentPage() {
+function PaymentPage() {  
   const presetAmounts = [100, 200, 500, 1000];
   const [selectedAmount, setSelectedAmount] = useState(null);
   const [customAmount, setCustomAmount] = useState('');
@@ -14,6 +14,19 @@ function PaymentPage() {
   const [selectedState, setSelectedState] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [phone, setPhone] = useState('');
+
+
+
+  const baseAmount = 2100;
+const gatewayFee = 53;
+const taxRate = 0.18;
+const gstAmount = baseAmount * taxRate;
+
+const donationAmount = selectedAmount ?? (customAmount ? Number(customAmount) : 0);
+const finalTotal = baseAmount + gatewayFee  + donationAmount;
+
+
+
 
   const finalAmount = selectedAmount ?? (customAmount ? Number(customAmount) : 2153);
 
@@ -63,7 +76,7 @@ const res = await fetch('/api/razorpay', {
     const order = await res.json();
 
  const options = {
-  key: "rzp_test_1DP5mmOlF5G5ag",
+  key: "rzp_live_RXSr6ntfaJkKau",
   amount: order.amount,
   currency: order.currency,
   name: 'Iskcon Donation',
@@ -73,9 +86,9 @@ const res = await fetch('/api/razorpay', {
     alert(`Payment successful! ID: ${response.razorpay_payment_id}`);
   },
   prefill: {
-    name: 'Test User',
-    email: 'test@example.com',
-    contact: '9999999999',
+    name: 'Arvind Kumar',
+    email: 'arvind82.mca@gmail.com',
+    contact: '9268247497',
   },
   theme: {
     color: '#F0AB50',
@@ -129,7 +142,7 @@ const res = await fetch('/api/razorpay', {
                         Online Puja Maha Bhog Aarti Archana Thali  × 1
                       </div>
                       <div className='text-end w-[30%] ps-2'>
-                        Rs. 2,100
+                        Rs. {baseAmount.toLocaleString()}
                       </div>
                     </div>
                     <div className='pt-3  flex items-start font-normal px-2'>
@@ -137,7 +150,7 @@ const res = await fetch('/api/razorpay', {
                         Subtotal
                       </div>
                       <div className='text-end w-[30%] ps-2'>
-                        Rs. 2,100
+                        Rs. {baseAmount.toLocaleString()}
                       </div>
                     </div>
                     <div className='pt-3  flex items-start font-normal px-2'>
@@ -145,7 +158,15 @@ const res = await fetch('/api/razorpay', {
                         Payment Gateway Fee
                       </div>
                       <div className='text-end w-[30%] ps-2'>
-                        Rs. 53
+                        Rs. {gatewayFee.toFixed(2)}
+                      </div>
+                    </div>
+                      <div className='pt-3  flex items-start font-normal px-2'>
+                      <div className='text-start w-[70%]'>
+                        Additional Sewa
+                      </div>
+                      <div className='text-end w-[30%] ps-2'>
+                        Rs. {donationAmount.toLocaleString()}
                       </div>
                     </div>
                   </div>
@@ -154,7 +175,7 @@ const res = await fetch('/api/razorpay', {
                       Total
                     </div>
                     <div className='text-end w-[30%] ps-2'>
-                      Rs. 2153
+                      Rs. {Math.round(finalTotal).toLocaleString()}
                     </div>
                   </div>
                   <div className='text-base pb-3'>
@@ -201,13 +222,8 @@ const res = await fetch('/api/razorpay', {
                       onChange={handleCustomChange}
                       className="w-full px-4 py-2 border rounded-xl text-gray-800 border-[#F0AB50] focus:outline-none focus:ring-2 focus:ring-[#F0AB50]"
                     />
-
-                    {/* Display selection */}
-                    {finalAmount && (
-                      <p className="mt-4 text-green-600 font-medium">
-                        You selected Rs. {finalAmount}
-                      </p>
-                    )}
+ 
+                     
                   </div>
                   <div className='text-center'>
                     <img src="/images/img-payment.png" alt="donation details" title="donation details" width={435} height={283} />
@@ -306,7 +322,7 @@ const res = await fetch('/api/razorpay', {
                               onChange={() => setPaymentOption(option.value)}
                               className="hidden"
                             />
-                            {option.label} <span className="font-semibold">Rs. {option.amount.toLocaleString()}</span>
+                            {option.label} <span className="font-semibold">Rs.  {Math.round(finalTotal).toLocaleString()}</span>
                           </label>
                         ))}
                       </div>
