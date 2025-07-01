@@ -12,8 +12,16 @@ import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-} from "@/components/ui/popover"
-
+} from "@/components/ui/popover" 
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 function GenrateSlip() {
     const [open, setOpen] = React.useState(false)
@@ -72,8 +80,53 @@ function GenrateSlip() {
                                     <label className='font-medium' htmlFor="State">State :</label>
                                     <div className='border-2 border-[#676767]  rounded-sm  p-2 w-full flex' >
                                         <img src="/images/icon-state.svg" alt="" />
-                                        <input type="text" id='State' className='border-0 mx-2 outline-0 flex-1' />
-                                        <img src="/images/icon-edit.svg" alt="" />
+                                         <Select id="State" className="text-lg flex-1 outline-0 border-0 drop-shadow-0">
+  <SelectTrigger className="flex-1 border-0 text-lg">
+    <SelectValue placeholder="Select your state" />
+  </SelectTrigger>
+  <SelectContent className='bg-white text-lg'>
+    <SelectGroup>
+      <SelectLabel>Indian States</SelectLabel>
+      <SelectItem value="Andhra Pradesh">Andhra Pradesh</SelectItem>
+      <SelectItem value="Arunachal Pradesh">Arunachal Pradesh</SelectItem>
+      <SelectItem value="Assam">Assam</SelectItem>
+      <SelectItem value="Bihar">Bihar</SelectItem>
+      <SelectItem value="Chhattisgarh">Chhattisgarh</SelectItem>
+      <SelectItem value="Goa">Goa</SelectItem>
+      <SelectItem value="Gujarat">Gujarat</SelectItem>
+      <SelectItem value="Haryana">Haryana</SelectItem>
+      <SelectItem value="Himachal Pradesh">Himachal Pradesh</SelectItem>
+      <SelectItem value="Jharkhand">Jharkhand</SelectItem>
+      <SelectItem value="Karnataka">Karnataka</SelectItem>
+      <SelectItem value="Kerala">Kerala</SelectItem>
+      <SelectItem value="Madhya Pradesh">Madhya Pradesh</SelectItem>
+      <SelectItem value="Maharashtra">Maharashtra</SelectItem>
+      <SelectItem value="Manipur">Manipur</SelectItem>
+      <SelectItem value="Meghalaya">Meghalaya</SelectItem>
+      <SelectItem value="Mizoram">Mizoram</SelectItem>
+      <SelectItem value="Nagaland">Nagaland</SelectItem>
+      <SelectItem value="Odisha">Odisha</SelectItem>
+      <SelectItem value="Punjab">Punjab</SelectItem>
+      <SelectItem value="Rajasthan">Rajasthan</SelectItem>
+      <SelectItem value="Sikkim">Sikkim</SelectItem>
+      <SelectItem value="Tamil Nadu">Tamil Nadu</SelectItem>
+      <SelectItem value="Telangana">Telangana</SelectItem>
+      <SelectItem value="Tripura">Tripura</SelectItem>
+      <SelectItem value="Uttar Pradesh">Uttar Pradesh</SelectItem>
+      <SelectItem value="Uttarakhand">Uttarakhand</SelectItem>
+      <SelectItem value="West Bengal">West Bengal</SelectItem>
+      <SelectItem value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</SelectItem>
+      <SelectItem value="Chandigarh">Chandigarh</SelectItem>
+      <SelectItem value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</SelectItem>
+      <SelectItem value="Delhi">Delhi</SelectItem>
+      <SelectItem value="Jammu and Kashmir">Jammu and Kashmir</SelectItem>
+      <SelectItem value="Ladakh">Ladakh</SelectItem>
+      <SelectItem value="Lakshadweep">Lakshadweep</SelectItem>
+      <SelectItem value="Puducherry">Puducherry</SelectItem>
+    </SelectGroup>
+  </SelectContent>
+</Select>
+ 
                                     </div>
                                 </div>
                             </div>
